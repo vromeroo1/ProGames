@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">Catálogo de Jogos</h1>
+      </div>
+      <div class="pill-tabs" role="group" aria-label="Tipo de jogo">
+        <button class="btn btn-sm active" type="button" data-tipo-tab="">Todos</button>
+        <button class="btn btn-sm" type="button" data-tipo-tab="videogame">Video Games</button>
+        <button class="btn btn-sm" type="button" data-tipo-tab="boardgame">Board Games</button>
+      </div>
+    </div>
+
+    <section class="app-card p-3 mb-3">
+      <form id="formFiltroCatalogo" class="row g-2 align-items-end">
+        <div class="col-lg-4">
+          <label class="form-label" for="busca">Pesquisar</label>
+          <input class="form-control" id="busca" placeholder="Título, descrição ou plataforma">
+        </div>
+        <div class="col-lg-3">
+          <label class="form-label" for="plataformaFiltro">Plataforma</label>
+          <select class="form-select" id="plataformaFiltro">
+            <option value="">Todas</option>
+            <option>PS5</option>
+            <option>Xbox Series X|S</option>
+            <option>Nintendo Switch</option>
+            <option>Nintendo Switch 2</option>
+            <option>Board Game</option>
+          </select>
+        </div>
+        <div class="col-lg-3">
+          <label class="form-label" for="categoriaFiltro">Gênero</label>
+          <select class="form-select" id="categoriaFiltro"></select>
+        </div>
+        <div class="col-lg-auto">
+          <button class="btn btn-primary" type="submit">Filtrar</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="catalogoGrid" class="catalog-grid"></section>
+  </main>
+
+  <div class="modal fade" id="modalReserva" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <form class="modal-content needs-validation" id="formReserva" novalidate>
+        <div class="modal-header">
+          <h2 class="modal-title h5">Solicitar Reserva</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="dataRetiradaReserva">Data de Retirada</label>
+              <input type="date" class="form-control" id="dataRetiradaReserva" required>
+              <div class="invalid-feedback">Informe a data de retirada.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="dataPrevistaReserva">Data de Devolução</label>
+              <input type="date" class="form-control" id="dataPrevistaReserva" required>
+              <div class="form-text">A partir de 3 diárias, R$ 10,00 de desconto.</div>
+              <div class="invalid-feedback">Informe a data de devolução.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Jogos da Reserva</label>
+              <div id="listaItensReserva" class="d-grid gap-2"></div>
+              <button type="button" class="btn btn-outline-dark btn-sm mt-2" id="btnAdicionarItemReserva">Adicionar Item</button>
+            </div>
+            <div class="col-12">
+              <div class="loan-summary" id="resumoReserva"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Reservar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/catalogo.js"></script>
+</body>
+</html>
+
+

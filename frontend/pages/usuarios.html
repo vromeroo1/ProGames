@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuários | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">Usuários</h1>
+      </div>
+      <button class="btn btn-dark" id="btnNovoUsuario">Novo Usuário</button>
+    </div>
+
+    <section class="app-card p-3 mb-3">
+      <form id="formFiltro" class="row g-2 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label" for="busca">Pesquisar</label>
+          <input class="form-control" id="busca" placeholder="Nome, email ou telefone">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="tipoUsuarioFiltro">Tipo</label>
+          <select class="form-select" id="tipoUsuarioFiltro">
+            <option value="">Todos</option>
+            <option value="admin">Administrador</option>
+            <option value="usuario">Usuário</option>
+          </select>
+        </div>
+        <div class="col-md-auto">
+          <button class="btn btn-outline-dark" type="submit">Filtrar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="app-card p-3">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>Tipo</th><th class="text-end">Ações</th></tr></thead>
+          <tbody id="tabelaUsuarios"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="modalUsuario" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content needs-validation" id="formUsuario" novalidate>
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="tituloModal">Usuário</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="usuarioId">
+          <div class="mb-3">
+            <label class="form-label" for="nome">Nome</label>
+            <input class="form-control" id="nome" name="nome" required maxlength="120">
+            <div class="invalid-feedback">Informe o nome.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required maxlength="150">
+            <div class="invalid-feedback">Informe um email válido.</div>
+          </div>
+          <div class="row g-2">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="telefone">Telefone</label>
+              <input class="form-control" id="telefone" name="telefone" maxlength="15" inputmode="numeric" placeholder="(12) 99999-9999">
+              <div class="invalid-feedback">Informe o telefone com DDD.</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="tipo_usuario">Tipo</label>
+              <select class="form-select" id="tipo_usuario" name="tipo_usuario">
+                <option value="usuario">Usuário</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="senha">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" minlength="6">
+            <div class="form-text">Obrigatória no cadastro. Na edição, deixe em branco para manter a atual.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-dark">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/usuarios.js"></script>
+</body>
+</html>
+
+

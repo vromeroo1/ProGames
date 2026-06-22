@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatórios | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="mb-4">
+      <h1 class="section-title">Relatórios PDF</h1>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <section class="app-card p-4 h-100">
+          <h2 class="h5">Relatório de Jogos</h2>
+          <p class="text-muted">Lista acervo, plataformas, gêneros, diárias e estoque.</p>
+          <button class="btn btn-primary" id="btnPdfJogos">Gerar PDF</button>
+        </section>
+      </div>
+      <div class="col-md-6">
+        <section class="app-card p-4 h-100">
+          <h2 class="h5">Relatório de Empréstimos</h2>
+          <p class="text-muted">Lista reservas, retiradas, devoluções, descontos e totais.</p>
+          <button class="btn btn-primary" id="btnPdfEmprestimos">Gerar PDF</button>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/relatorios.js"></script>
+</body>
+</html>
+
+

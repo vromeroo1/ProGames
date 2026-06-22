@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jogos | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">Acervo de Jogos</h1>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-dark" id="btnPdfJogos">PDF</button>
+        <button class="btn btn-dark" id="btnNovoJogo">Novo Jogo</button>
+      </div>
+    </div>
+
+    <section class="app-card p-3 mb-3">
+      <div class="pill-tabs mb-3" role="group" aria-label="Tipo de jogo">
+        <button class="btn btn-sm active" type="button" data-tipo-tab="">Todos</button>
+        <button class="btn btn-sm" type="button" data-tipo-tab="videogame">Video Games</button>
+        <button class="btn btn-sm" type="button" data-tipo-tab="boardgame">Board Games</button>
+      </div>
+      <form id="formFiltro" class="row g-2 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label" for="busca">Pesquisar</label>
+          <input class="form-control" id="busca" placeholder="Título, descrição ou plataforma">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="categoriaFiltro">Categoria</label>
+          <select class="form-select" id="categoriaFiltro"></select>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label" for="tipoFiltro">Tipo</label>
+          <select class="form-select" id="tipoFiltro">
+            <option value="">Todos</option>
+            <option value="videogame">Video Games</option>
+            <option value="boardgame">Board Games</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label" for="disponiveisFiltro">Estoque</label>
+          <select class="form-select" id="disponiveisFiltro">
+            <option value="">Todos</option>
+            <option value="1">Disponíveis</option>
+          </select>
+        </div>
+        <div class="col-md-auto">
+          <button class="btn btn-outline-dark" type="submit">Filtrar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="app-card p-3">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>Jogo</th><th>Categoria</th><th>Tipo</th><th>Plataforma</th><th class="text-end">Diária</th><th class="text-end">Estoque</th><th class="text-end">Ações</th></tr></thead>
+          <tbody id="tabelaJogos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="modalJogo" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <form class="modal-content needs-validation" id="formJogo" novalidate>
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="tituloModal">Jogo</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="jogoId">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label class="form-label" for="titulo">Título</label>
+              <input class="form-control" id="titulo" name="titulo" required maxlength="140">
+              <div class="invalid-feedback">Informe o título.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="categoria_id">Categoria</label>
+              <select class="form-select" id="categoria_id" name="categoria_id" required></select>
+              <div class="invalid-feedback">Selecione a categoria.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="tipo_jogo">Tipo</label>
+              <select class="form-select" id="tipo_jogo" name="tipo_jogo" required>
+                <option value="videogame">Video Games</option>
+                <option value="boardgame">Board Games</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="plataforma">Plataforma</label>
+              <select class="form-select" id="plataforma" name="plataforma" required>
+                <option>PS5</option>
+                <option>Xbox Series X|S</option>
+                <option>Nintendo Switch</option>
+                <option>Nintendo Switch 2</option>
+                <option>Board Game</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label" for="valor_aluguel">Valor da Diária</label>
+              <input type="number" step="0.01" min="0" class="form-control" id="valor_aluguel" name="valor_aluguel" required>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label" for="estoque">Estoque</label>
+              <input type="number" min="0" class="form-control" id="estoque" name="estoque" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="descricao">Descrição</label>
+              <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="imagem">Capa do Jogo</label>
+              <input type="file" accept="image/*" class="form-control" id="imagem" name="imagem">
+              <div class="form-text">Opcional. Sem capa enviada, o sistema usa a imagem padrão da plataforma.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-dark">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/jogos.js"></script>
+</body>
+</html>
+
+

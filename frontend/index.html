@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProGames | Login</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <main class="auth-screen">
+    <section class="auth-panel app-card">
+      <div class="auth-copy">
+        <div>
+          <div class="brand-mark mb-4 text-white">
+            <span class="brand-symbol">PG</span>
+            <span>ProGames</span>
+          </div>
+          <h1>Aluguel de Jogos</h1>
+        </div>
+        <div class="auth-stripe" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="auth-form">
+        <h2 class="h4 mb-1">Acesso ao Sistema</h2>
+        <p class="form-help mb-4">Entre com seu email e senha cadastrados.</p>
+        <form id="formLogin" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            <div class="invalid-feedback">Informe um email válido.</div>
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
+            <div class="invalid-feedback">Informe a senha.</div>
+          </div>
+          <button class="btn btn-dark w-100" type="submit">
+            Entrar
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">DashBoard Administrativo</h1>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-dark" id="btnPdfEmprestimos" type="button">
+          PDF Empréstimos
+        </button>
+        <a class="btn btn-dark" href="jogos.html">
+          Novo Jogo
+        </a>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6 col-xl-3">
+        <div class="app-card metric">
+          <div><p class="metric-label">Jogos Cadastrados</p><p class="metric-value" id="totalJogos">0</p></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="app-card metric">
+          <div><p class="metric-label">Empréstimos Ativos</p><p class="metric-value" id="ativos">0</p></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="app-card metric">
+          <div><p class="metric-label">Atrasados</p><p class="metric-value" id="atrasados">0</p></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="app-card metric">
+          <div><p class="metric-label">Total Arrecadado</p><p class="metric-value" id="arrecadado">R$ 0,00</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-xl-7">
+        <section class="app-card p-3 h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h5 mb-0">Jogos Mais Alugados</h2>
+          </div>
+          <canvas id="graficoJogos" height="130"></canvas>
+        </section>
+      </div>
+      <div class="col-xl-5">
+        <section class="app-card p-3 h-100">
+          <h2 class="h5 mb-3">Ranking de Jogos</h2>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead><tr><th>Jogo</th><th class="text-end">Total</th></tr></thead>
+              <tbody id="tabelaRanking"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.umd.js"></script>
+  <script type="module" src="../assets/js/dashboard.js"></script>
+</body>
+</html>
+
+

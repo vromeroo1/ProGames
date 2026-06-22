@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minhas Reservas | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">Minhas Reservas</h1>
+      </div>
+      <a class="btn btn-primary" href="catalogo.html">Ver Catálogo</a>
+    </div>
+    <section class="app-card p-3">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>ID</th><th>Jogos</th><th>Retirada</th><th>Devolução</th><th>Status</th><th class="text-end">Dias</th><th class="text-end">Total</th></tr></thead>
+          <tbody id="tabelaReservas"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/minhas-reservas.js"></script>
+</body>
+</html>
+
+

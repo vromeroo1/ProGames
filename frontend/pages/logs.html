@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logs | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">Logs do Sistema</h1>
+      </div>
+      <button class="btn btn-primary" id="btnExportarXml">Exportar XML</button>
+    </div>
+    <section class="app-card p-3 mb-3">
+      <form id="formFiltroLogs" class="row g-2 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label" for="usuarioLog">Usuário</label>
+          <input class="form-control" id="usuarioLog" placeholder="email ou nome">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="dataInicioLog">Início</label>
+          <input type="date" class="form-control" id="dataInicioLog">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="dataFimLog">Fim</label>
+          <input type="date" class="form-control" id="dataFimLog">
+        </div>
+        <div class="col-md-auto">
+          <button class="btn btn-outline-dark" type="submit">Filtrar</button>
+        </div>
+      </form>
+    </section>
+    <section class="app-card p-3">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>Data</th><th>Usuário</th><th>Ação</th><th>Método</th><th>Status</th></tr></thead>
+          <tbody id="tabelaLogs"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/logs.js"></script>
+</body>
+</html>
+
+

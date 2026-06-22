@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Empréstimos | ProGames</title>
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar"></div>
+  <main class="container-fluid page-shell">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+      <div>
+        <h1 class="section-title">Empréstimos e Reservas</h1>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-dark" id="btnPdfEmprestimos">PDF</button>
+        <button class="btn btn-dark" id="btnNovoEmprestimo">Novo Empréstimo</button>
+      </div>
+    </div>
+
+    <section class="app-card p-3 mb-3">
+      <form id="formFiltro" class="row g-2 align-items-end">
+        <div class="col-md-3">
+          <label class="form-label" for="usuarioFiltro">Usuário</label>
+          <select class="form-select" id="usuarioFiltro"></select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="statusFiltro">Status</label>
+          <select class="form-select" id="statusFiltro">
+            <option value="">Todos</option>
+            <option value="pendente">Pendentes</option>
+            <option value="aprovado">Aprovados</option>
+            <option value="retirado">Retirados</option>
+            <option value="atrasado">Atrasados</option>
+            <option value="devolvido">Devolvidos</option>
+            <option value="cancelado">Cancelados</option>
+          </select>
+        </div>
+        <div class="col-md-auto">
+          <button class="btn btn-outline-dark" type="submit">Filtrar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="app-card p-3">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>ID</th><th>Usuário</th><th>Jogos</th><th>Empréstimo</th><th>Prevista</th><th>Status</th><th class="text-end">Dias</th><th class="text-end">Desconto</th><th class="text-end">Total</th><th class="text-end">Ações</th></tr></thead>
+          <tbody id="tabelaEmprestimos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="modalEmprestimo" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <form class="modal-content needs-validation" id="formEmprestimo" novalidate>
+        <div class="modal-header">
+          <h2 class="modal-title h5">Novo Empréstimo</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label" for="usuario_id">Usuário</label>
+              <select class="form-select" id="usuario_id" required></select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="data_retirada">Data de Retirada</label>
+              <input type="date" class="form-control" id="data_retirada" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label" for="data_prevista_devolucao">Data de Devolução</label>
+              <input type="date" class="form-control" id="data_prevista_devolucao" required>
+              <div class="form-text">A partir de 3 diárias, R$ 10,00 de desconto.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Jogos do Empréstimo</label>
+              <div id="listaItens" class="d-grid gap-2"></div>
+              <button type="button" class="btn btn-outline-dark btn-sm mt-2" id="btnAdicionarItem">Adicionar Item</button>
+            </div>
+            <div class="col-12">
+              <div class="loan-summary" id="resumoEmprestimo"></div>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="observacoes">Observações</label>
+              <textarea class="form-control" id="observacoes" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-dark">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEdicao" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content" id="formEdicao">
+        <div class="modal-header">
+          <h2 class="modal-title h5">Editar Empréstimo</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="emprestimoIdEdicao">
+          <div class="mb-3">
+            <label class="form-label" for="dataPrevistaEdicao">Data Prevista</label>
+            <input type="date" class="form-control" id="dataPrevistaEdicao">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="statusEdicao">Status</label>
+            <select class="form-select" id="statusEdicao">
+              <option value="pendente">Pendente</option>
+              <option value="aprovado">Aprovado</option>
+              <option value="retirado">Retirado</option>
+              <option value="atrasado">Atrasado</option>
+              <option value="devolvido">Devolvido</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="observacoesEdicao">Observações</label>
+            <textarea class="form-control" id="observacoesEdicao" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-dark">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../assets/js/emprestimos.js"></script>
+</body>
+</html>
+
+
